@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('title','文章详情')
@@ -39,16 +40,13 @@
 
             <hr>
             <div>
-                <form action="{{url('/message/add')}}" method="POST">
-                    @method("POST")
-                    @csrf
-
+                <form action="" id="form1">
                     <h4>留言</h4>
-                    <input type="hidden" value="{{$articel->id}}" name="articel_id">
-                    <textarea rows="6" cols="80" name="content">
+                    <input type="hidden" value="{{$articel->id}}" name="articel_id" id="articel_id">
+                    <textarea rows="6" cols="80" name="content" id="content">
 
                     </textarea>
-                    <button type="submit" class="btn btn-info">提交</button>
+                    <button type="button" class="btn btn-info" onclick="commit()">提交</button>
                 </form>
 
             </div>
@@ -58,4 +56,38 @@
     </div>
 </div>
 @endsection
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script>
+
+
+    function commit() {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var articel = $("#articel_id").val();
+        var content = $("#content").val();
+
+        $.ajax({
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "{{url('/message/add')}}" ,//url
+            data: {articel_id:articel,content:content},
+            success: function (result) {
+                if (result.code == 0) {
+                    alert(result.msg);
+                    window.location.reload();
+                }else{
+                    alert(result.msg);
+                }
+            },
+            error : function(data) {
+                alert("服务器异常！",data);
+            }
+        });
+    }
+</script>
+
 

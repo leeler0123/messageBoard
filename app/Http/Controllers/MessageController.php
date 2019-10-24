@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Model\Articel;
 use App\Model\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MessageController extends Controller
 {
@@ -30,7 +31,7 @@ class MessageController extends Controller
                         ->with(['user'=>function($query){
                             $query->select(['id','username']);
                         }]
-                    )->paginate(3);
+                    )->paginate(10);
 
             return view('/message/detail',['articel'=>$articel,'comments'=>$comments]);
         }
@@ -39,19 +40,25 @@ class MessageController extends Controller
         public function add(Request $request)
         {
             $params = $request->only(['articel_id','content']);
-            $validateData = $request->validate([
-                'content' => 'required|max:255',
+            $validator = Validator::make($request->all(), [
+                'content' => 'required|min:5|max:255',
                 'articel_id' => 'required|Integer',
             ]);
+
+            if ($validator->fails()) {
+                return responseErr('留言长度必须要5-255字符之间');
+            }
             $comment = new Comment;
             $comment->user_id = session('userinfo')['id'];
             $comment->articel_id = $params['articel_id'];
             $comment->content = $params['content'];
             $comment->ctime = time();
-            $ret = $comment-> save();
-
-            return redirect('/message/detail/'.$params['articel_id']);
-
+            $insert_id = $comment-> save();
+            if($insert_id){
+                return responseSuc(['id'=>$insert_id],0,'留言成功');
+            }else{
+                return responseErr(['留言失败']);
+            }
         }
 
         // 留言管理
@@ -67,7 +74,6 @@ class MessageController extends Controller
                     'blacklist'=>function($query){
                         $query->select(['user_id']);
                 }])->orderBy('id','desc')->paginate(10);
-                //dd($list);
                 return view('/message/manage_msg',['list'=>$list]);
         }
 

@@ -26,7 +26,7 @@
             </p>
         </div>
         <div class="signup-page">
-            <form action="{{url('login/register')}}" method="POST">
+            <form action="{{url('login/register')}}" method="POST"  id="form-register">
                 @method('POST')
                 @csrf
                 <h3>
@@ -78,9 +78,7 @@
             </form>
         </div>
         <div class="signin-page">
-            <form action="{{url('login')}}" method="POST">
-                @method('POST')
-                @csrf
+            <form action=""  id="form-login">
                 <h3>
                     登录
                 </h3>
@@ -97,18 +95,7 @@
                     <input type="password" placeholder="******" name="password">
                 </div>
                 <br>
-
-                {{--<span id="control-group">
-                  <label>
-                    <input type="checkbox" value="option1">
-                    记住我 |
-                  </label>
-                  <a href="/user/newpasswd">忘记密码</a>
-                </span>--}}
-                <br>
-                <button class="btn btn-lg btn-info btn-block">
-                    <span>登陆</span>
-                </button>
+                <button class="btn btn-lg btn-info btn-block" type="button" onclick="login()">登陆</button>
                 @if (!empty($login_error))
                     <div  style="color:red">{{$login_error}}<div>
                 @endif
@@ -118,80 +105,64 @@
 </div>
 @endsection
 
-</html>
-<style>
-    .navbar-USF{
-        left:0;
-        top:0;
-        position:fixed;
-        height:100%;
-        width:45px;
-        background-color:#3C3C3C;
-    }
-    .navbar-USF a{
-        display:block;
-        padding:10px;
-        line-height: 25px;
-        height:45px;
-        font-size:16px;
-        text-align: center;
-    }
-    .navbar-USF a:hover{
-        background:#E0E0E0;
-    }
-    .navbar-USF a span{
-        height:25px;
-        width: 25px;
-    }
-
-    .sign-page{
-        margin-top:30px;
-        padding:40px;
-    }
-
-    .alert{
-        position:absolute;
-        width:18%;
-        left:40%;
-        top:5%;
-        display:none;
-    }
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script>
 
 
-    .alert p{
-        text-align:center;
-    }
-    .signup-page{
-        float:left;
-        width:49%;
-        display:inline-block;
-        vertical-align:top;
-        border-right: 1px solid #d9d9d9;
+    function login() {
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var username = $("#form-login input[name='username']").val();
+        var password = $("#form-login input[name='password']").val();
+
+        $.ajax({
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "{{url('/login')}}" ,//url
+            data: {username:username,password:password},
+            success: function (result) {
+                if (result.code == 0) {
+                    // alert(result.data);
+                    window.location.href = '{{url('message')}}';
+                }else{
+                    alert(result.msg,123);
+                }
+            },
+            error : function(data) {
+                alert("服务器异常！",data);
+            }
+        });
     }
 
-    .signin-page{
-        float:left;
-        width:49%;
-        display:inline-block;
-        vertical-align:top;
-    }
+    function register(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var username = $("#form-register input[name='username']").val();
+        var password = $("#form-register input[name='password']").val();
 
-    form{
-        width:301px;
-        display:block;
-        margin:20px;
-        margin-left:100px;
+        $.ajax({
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "{{url('/login')}}" ,//url
+            data: {username:username,password:password},
+            success: function (result) {
+                if (result.code == 0) {
+                    // alert(result.data);
+                    window.location.href = '{{url('message')}}';
+                }else{
+                    alert(result.msg,123);
+                }
+            },
+            error : function(data) {
+                alert("服务器异常！",data);
+            }
+        });
     }
-    .input-prepend span{
-        width:42px;
-        height:42px;
-    }
-    .input-prepend input{
-        width:228px;
-        height:42px;
-        padding:4px 12px;
-    }
-    span#control-group{
-        margin:0 0 100px 0;
-    }
-</style>
+</script>

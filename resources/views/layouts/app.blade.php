@@ -1,9 +1,11 @@
 <html>
 <head>
     <title> @yield('title')</title>
+    <meta name="csrf-token" content="<?php echo csrf_token(); ?>" id="csrf-token">
 </head>
 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="{{URL::asset('css/navbar.css')}}" rel="stylesheet" type="text/css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <body>
 @section('navbar')
     <div class="navbar-USF">
@@ -33,3 +35,4 @@
 </div>
 </body>
 </html>
+
