@@ -14,14 +14,15 @@ class MessageController extends Controller
      * @describe   文章列表
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-        public function list()
+        public function list(Request $request)
         {
+            //echo session()->getId();die;
             $art = Articel::select(['id','user_id','title','content','ctime'])
                 ->with(['user'=>function($query){
                     $query->select(['id','username']);
                 }])
                 ->limit(50)->get();
-            return view('/message/list',['art'=>$art]);
+            return $this->output('/message/list',['art'=>$art]);
         }
 
     /**
@@ -43,7 +44,7 @@ class MessageController extends Controller
                 }])
                 ->paginate(10);
 
-            return view('/message/detail',['articel'=>$articel,'comments'=>$comments]);
+            return $this->output('/message/detail',['articel'=>$articel,'comments'=>$comments]);
         }
 
     /**
@@ -91,7 +92,7 @@ class MessageController extends Controller
                     'blacklist'=>function($query){
                         $query->select(['user_id']);
                 }])->orderBy('id','desc')->paginate(10);
-                return view('/message/manage_msg',['list'=>$list]);
+                return $this->output('/message/manage_msg',['list'=>$list]);
         }
 
     /**

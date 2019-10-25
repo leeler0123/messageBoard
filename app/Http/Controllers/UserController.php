@@ -18,7 +18,7 @@ class UserController extends Controller
         $users = User::select(['id','username','email','is_super','ctime'])->with(['blacklist'=>function($query){
             $query->select(['user_id']);
         }])->paginate(5);
-        return view('user/list',['users'=>$users]);
+        return $this->output('user/list',['users'=>$users]);
     }
 
     /**
@@ -33,7 +33,7 @@ class UserController extends Controller
                 $query->select(['id','username','email']);
             }])
             ->paginate(10);
-        return view('user/blacklist',['blacklist'=>$blacklist]);
+        return $this->output('user/blacklist',['blacklist'=>$blacklist]);
     }
 
     /**

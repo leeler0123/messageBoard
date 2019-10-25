@@ -61,7 +61,7 @@ if(!function_exists('output')) {
      * @param string|integer $typeOrcode  跳转类型|状态码
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
-    function output($route_or_msg = '',$data = [],$type_or_code = ''){
+    function response_output($route_or_msg = '',$data = [],$type_or_code = ''){
         $is_ajax = (new \Illuminate\Http\Request())->is_ajax();
         if($is_ajax){
             if(empty($route_or_msg)) $route_or_msg = RETURN_SUS_MSG;

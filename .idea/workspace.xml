@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7af2321a-3dde-4dcd-90a5-3209d25f87a7" name="Default Changelist" comment="细节优化">
+    <list default="true" id="7af2321a-3dde-4dcd-90a5-3209d25f87a7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/BlackList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/BlackList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Helpers.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,15 +133,15 @@
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\worker\project\message\public" />
-      <recent name="C:\worker\project\message" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\worker\github\messageBoard\resources\lang" />
       <recent name="C:\worker\project\message\resources\views\message" />
       <recent name="C:\worker\project\message\resources\views\login" />
       <recent name="C:\worker\project\message\vendor" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\worker\project\message\public" />
+      <recent name="C:\worker\project\message" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -176,6 +178,7 @@
       <workItem from="1571898112130" duration="457000" />
       <workItem from="1571900656116" duration="12636000" />
       <workItem from="1571913315888" duration="16639000" />
+      <workItem from="1571984103975" duration="3665000" />
     </task>
     <task id="LOCAL-00001" summary="细节修改">
       <created>1571914086101</created>
@@ -191,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571976201249</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="注释更新">
+      <created>1571984270201</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1571984270201</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +224,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="细节修改" />
     <MESSAGE value="细节优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="细节优化" />
+    <MESSAGE value="注释更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="注释更新" />
   </component>
 </project>
