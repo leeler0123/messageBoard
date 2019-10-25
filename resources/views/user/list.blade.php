@@ -31,7 +31,7 @@
                             <td>{{date('Y-m-d H:i:s',$v->ctime)}}</td>
                             <td>
                                 @if( empty($v->blacklist))
-                                    <a class="btn btn-danger" href='{{url("set_black/{$v->id}")}}' > 拉黑 </a>
+                                    <button class="btn btn-danger" onclick='set_black({{$v->id}})' > 拉黑 </button>
                                 @else
                                      <span>已拉黑</span>
                                 @endif
@@ -46,3 +46,27 @@
         </div>
     </div>
 @endsection
+
+<script>
+    function set_black(user_id){
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:"{{url('/set_black')}}/" + user_id,
+            success : function (ret) {
+                // console.log(ret);
+                if(ret.code == 0){
+                    alert('操作成功')
+                    window.location.reload();
+                }else{
+                    alert(ret.msg);
+                }
+
+            },
+            error : function() {
+                alert('服务器异常');
+            }
+        })
+    }
+
+</script>

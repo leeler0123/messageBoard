@@ -71,8 +71,8 @@
         var content = $("#content").val();
 
         $.ajax({
-            type: "POST",//方法类型
-            dataType: "json",//预期服务器返回的数据类型
+            type: "POST",
+            dataType: "json",
             url: "{{url('/message/add')}}" ,//url
             data: {articel_id:articel,content:content},
             success: function (result) {

@@ -53,27 +53,4 @@ if(!function_exists('formatCtime')) {
     }
 }
 
-if(!function_exists('output')) {
-    /**
-     * @describe  响应输出
-     * @param string $route 路由地址
-     * @param array $data  携带参数
-     * @param string|integer $typeOrcode  跳转类型|状态码
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
-     */
-    function response_output($route_or_msg = '',$data = [],$type_or_code = ''){
-        $is_ajax = (new \Illuminate\Http\Request())->is_ajax();
-        if($is_ajax){
-            if(empty($route_or_msg)) $route_or_msg = RETURN_SUS_MSG;
-            if(empty($type_or_code)) $type_or_code = RETURN_SUS_CODE;
-            return responseJson($type_or_code , $route_or_msg , $data);
-        }else{
-            switch ($type_or_code){
-                case 'redirct' :
-                    return redirect($type_or_code);
-                default :
-                    return view($type_or_code,$data);
-            }
-        }
-    }
-}
+

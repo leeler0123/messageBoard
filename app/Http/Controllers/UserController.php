@@ -4,67 +4,61 @@ namespace App\Http\Controllers;
 
 use App\Model\Blacklist;
 use App\Model\User;
+use App\Services\BlacklistService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
     /**
-     * @describe    用户列表
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @describe 用户列表
+     * @param UserService $userService
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function list()
+    public function list(UserService $userService)
     {
-        //分页操作
-        $users = User::select(['id','username','email','is_super','ctime'])->with(['blacklist'=>function($query){
-            $query->select(['user_id']);
-        }])->paginate(5);
+        $users = $userService->list();
         return $this->output('user/list',['users'=>$users]);
     }
 
     /**
      * @describe    黑名单列表
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param BlacklistService $blacklistService
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function blacklist()
+    public function blacklist(BlacklistService $blacklistService)
     {
         //分页操作
-        $blacklist = Blacklist::select(['id','user_id','set_user_id','ctime'])
-            ->with(['user'=>function($query){
-                $query->select(['id','username','email']);
-            }])
-            ->paginate(10);
+        $blacklist = $blacklistService->list();
         return $this->output('user/blacklist',['blacklist'=>$blacklist]);
     }
 
     /**
      * @describe    拉黑用户
+     * @param BlacklistService $blacklistService
      * @param $user_id  用户ID
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function set_black($user_id)
+    public function set_black(BlacklistService $blacklistService , $user_id)
     {
-        $flag = Blacklist::where('user_id',$user_id)->first();
-        if($flag){
-            return redirect('/user_manage');
+        $ret = $blacklistService->set_black($user_id);
+        if($ret){
+            return responseSuc(['ret'=>$ret]);
         }else{
-            $bl = new Blacklist();
-            $bl->user_id = $user_id;
-            $bl->set_user_id = session('userinfo')['id'];
-            $bl->ctime = time();
-            $ret = $bl->save();
-            return back();
+            return responseErr('操作失败');
         }
     }
 
     /**
-     * @describe    取消拉黑
-     * @param $id   用户ID
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @describe 取消拉黑
+     * @param BlacklistService $blacklistService
+     * @param $user_id  用户id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function del_black($id)
+    public function del_black(BlacklistService $blacklistService , $user_id)
     {
-        $bls = Blacklist::destroy($id);
-        return redirect('/blacklist');
-
+        $ret = $blacklistService->del_black($user_id);
+        return responseSuc(['ret'=>$ret]);
     }
 }

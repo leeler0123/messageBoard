@@ -26,7 +26,7 @@
                             <td>{{$v->user->email}}</td>
                             <td>{{date('Y-m-d H:i',$v->ctime)}}</td>
                             <td>
-                                <a class='btn btn-info' href='{{url("del_black/{$v->id}")}}' > 取消拉黑 </a></td>
+                                <button class='btn btn-info' onclick='del_black({{$v->id}})' > 取消拉黑 </button></td>
                         </tr>
                     @endforeach
 
@@ -38,3 +38,24 @@
         </div>
     </div>
 @endsection
+<script>
+    function del_black(user_id){
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:"{{url('/del_black')}}/" + user_id,
+            success : function (ret) {
+                if(ret.code == 0){
+                    alert('操作成功')
+                    window.location.reload();
+                }else{
+                    alert(ret.msg);
+                }
+            },
+            error : function() {
+                alert('服务器异常');
+            }
+        })
+    }
+
+</script>

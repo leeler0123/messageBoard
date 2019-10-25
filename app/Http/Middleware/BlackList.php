@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Services\BlacklistService;
 use Closure;
 
 class BlackList
@@ -16,7 +17,7 @@ class BlackList
     public function handle($request, Closure $next)
     {
         $user_id = session('userinfo')['id'];
-        $flag = \App\Model\Blacklist::where('user_id',$user_id)->first();
+        $flag = (new BlacklistService())->check_user($user_id);
         if($flag){
             if(request()->ajax()){
                 return responseErr('您已被拉黑');

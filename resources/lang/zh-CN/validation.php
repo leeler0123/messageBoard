@@ -175,5 +175,6 @@ return [
         'available'             => '可用的',
         'size'                  => '大小',
         'captcha'               => '验证码',
+        'password_confirm'               => '确认密码',
     ],
 ];

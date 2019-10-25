@@ -29,7 +29,7 @@
                             <td>{{$v->user->username}}</td>
                             <td>
                                 @if( empty($v->blacklist))
-                                    <a class="btn btn-danger" href='{{url("set_black/{$v->user_id}")}}' > 拉黑 </a>
+                                    <button class="btn btn-danger" onclick="set_black({{$v->user_id}})" > 拉黑 </button>
                                 @else
                                     <span>已拉黑</span>
                                 @endif
@@ -37,7 +37,7 @@
                                 @if( $v->is_del == 1)
                                     已删除
                                 @else
-                                    <span class="btn btn-warning"><a href="{{url('/message/del/'.$v->id)}}">删除</a></span>
+                                    <span ><button class="btn btn-warning" onclick="del_comment({{$v->id}})">删除</button></span>
                                 @endif
                             </td>
                         </tr>
@@ -50,3 +50,44 @@
         </div>
     </div>
 @endsection
+
+<script>
+    function set_black(user_id){
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:"{{url('/set_black')}}/" + user_id,
+            success : function (ret) {
+                if(ret.code == 0){
+                    alert('操作成功')
+                    window.location.reload();
+                }else{
+                    alert(ret.msg);
+                }
+            },
+            error : function() {
+                alert('服务器异常');
+            }
+        })
+    }
+
+    function del_comment(id){
+        $.ajax({
+            type:'GET',
+            dataType:'json',
+            url:"{{url('/message/del')}}/" + id,
+            success : function (ret) {
+                if(ret.code == 0){
+                    alert('操作成功')
+                    window.location.reload();
+                }else{
+                    alert(ret.msg);
+                }
+            },
+            error : function() {
+                alert('服务器异常');
+            }
+        })
+    }
+
+</script>
