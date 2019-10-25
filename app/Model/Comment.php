@@ -26,30 +26,26 @@ class Comment extends Model
     }
 
 
-
-    // 格式化日期
+    /**
+     * @describe    格式化日期
+     * @param $ctime  时间戳
+     * @return string   格式化后字符串 ，如一小时后
+     */
     public function getCtimeAttribute($ctime)
     {
-        $second = time() - $ctime;
-        switch ($second){
-            case $second < 3600 :
-                return floor($second/60) .'分钟前';
-            case $second < 86400 :
-                return floor($second/3600) .'小时前';
-            case $second < 2592000 :
-                return floor($second/86400) .'天前';
-            default :
-                return date('Y-m-d H:i:s',$ctime);
-        }
-        return date('Y-m-d',$ctime);
+        return formatCtime($ctime);
     }
 
-    // 防止xss 攻击
+    /**
+     * @describe    过滤字段 防止xss 攻击
+     * @param $value
+     */
     public function setContentAttribute($value)
     {
         $this->attributes['content'] = clean($value);
     }
 
+    //获取留言内容
     public function getContentAttribute($v){
         return clean($v);
     }

@@ -1,17 +1,3 @@
-{{--<!DOCTYPE html>
-<html lang="zh-cn">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>
-    </title>
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
-          rel="stylesheet">
-</head>--}}
-
 @extends('layouts.app')
 
 @section('title','登录注册')
@@ -26,9 +12,7 @@
             </p>
         </div>
         <div class="signup-page">
-            <form action="{{url('login/register')}}" method="POST"  id="form-register">
-                @method('POST')
-                @csrf
+            <form  id="form-register">
                 <h3>
                     通过邮箱注册
                 </h3>
@@ -56,16 +40,16 @@
                 </div>
                 <br>
                 <div class="input-prepend" >
-                    <span class="">验证码<img src="{{captcha_src('mini')}}" style="display: inline" onclick="this.src='{{captcha_src('mini')}}?'+Math.random()"></span>
-                    <span><input  name="captcha" /></span>
+                    <span class="">验证码<img src="{{captcha_src('mini')}}" style="display: inline" id="captcha_img"  onclick="this.src='{{captcha_src('mini')}}?'+Math.random()"></span>
+                    <span><input  name="captcha" id="captcha" /></span>
                 </div>
                 <br>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">
-                    <span>注册</span>
+                <button class="btn btn-lg btn-primary btn-block"  onclick="register()" type="button" >
+                    注册
                 </button>
 
 
-                @if ($errors->any())
+               {{-- @if ($errors->any())
                     <div  style="color:red">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -73,7 +57,8 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif
+                @endif--}}
+
 
             </form>
         </div>
@@ -132,8 +117,8 @@
                     alert(result.msg,123);
                 }
             },
-            error : function(data) {
-                alert("服务器异常！",data);
+            error : function() {
+                alert("服务器异常！");
             }
         });
     }
@@ -145,23 +130,33 @@
             }
         });
         var username = $("#form-register input[name='username']").val();
+        var email = $("#form-register input[name='email']").val();
         var password = $("#form-register input[name='password']").val();
+        var password_confirm = $("#form-register input[name='password_confirm']").val();
+        var captcha = $("#form-register input[name='captcha']").val();
 
         $.ajax({
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "{{url('/login')}}" ,//url
-            data: {username:username,password:password},
+            url: "{{url('/login/register')}}" ,//url
+            data: {
+                username:username,
+                password:password,
+                email:email,
+                password_confirm:password_confirm,
+                captcha:captcha,
+            },
             success: function (result) {
+                console.log(result);
                 if (result.code == 0) {
-                    // alert(result.data);
                     window.location.href = '{{url('message')}}';
                 }else{
-                    alert(result.msg,123);
+                    $('#captcha_img').click();
+                    alert(result.msg);
                 }
             },
-            error : function(data) {
-                alert("服务器异常！",data);
+            error : function() {
+                alert("服务器异常！");
             }
         });
     }

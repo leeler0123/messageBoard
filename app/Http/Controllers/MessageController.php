@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 class MessageController extends Controller
 {
-        // 文章列表
+    /**
+     * @describe   文章列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
         public function list()
         {
             $art = Articel::select(['id','user_id','title','content','ctime'])
@@ -20,23 +23,34 @@ class MessageController extends Controller
                 ->limit(50)->get();
             return view('/message/list',['art'=>$art]);
         }
-        //文章详情
+
+    /**
+     * @describe 文章详情
+     * @param $id 文章ID
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
         public function detail($id)
         {
             $articel = Articel::select(['id','user_id','title','content','ctime'])->where('id',intval($id))
                 ->with(['user'=>function($query){
                    $query->select(['id','username']);
                 }])->first();
-            $comments = Comment::select(['id','user_id','articel_id','content','ctime'])->where(['articel_id'=>intval($id),'is_del'=>0])->orderBy('id','DESC')
-                        ->with(['user'=>function($query){
-                            $query->select(['id','username']);
-                        }]
-                    )->paginate(10);
+
+            $comments = Comment::select(['id','user_id','articel_id','content','ctime'])
+                ->where(['articel_id'=>intval($id),'is_del'=>0])->orderBy('id','DESC')
+                ->with(['user'=>function($query){
+                    $query->select(['id','username']);
+                }])
+                ->paginate(10);
 
             return view('/message/detail',['articel'=>$articel,'comments'=>$comments]);
         }
 
-        // 新增留言
+    /**
+     * @describe 新增留言
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
         public function add(Request $request)
         {
             $params = $request->only(['articel_id','content']);
@@ -61,7 +75,10 @@ class MessageController extends Controller
             }
         }
 
-        // 留言管理
+    /**
+     * @describe 留言管理
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
         public function manage_msg()
         {
                 $list = Comment::select(['content','id','user_id','articel_id','ctime','is_del'])->with([
@@ -77,7 +94,11 @@ class MessageController extends Controller
                 return view('/message/manage_msg',['list'=>$list]);
         }
 
-        // 删除留言
+    /**
+     * @describe  删除留言
+     * @param $id  留言ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
         public function del($id)
         {
             $ret = Comment::where('id',intval($id))->update(['is_del'=>1]);

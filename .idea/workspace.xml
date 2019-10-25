@@ -2,18 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7af2321a-3dde-4dcd-90a5-3209d25f87a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Helpers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/RegisterRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery2.1.4/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Constants/Common.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/zh-CN/auth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/zh-CN/pagination.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/zh-CN/passwords.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/zh-CN/validation.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/message.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/message.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/BlackList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/BlackList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Articel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Articel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Comment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/login/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/login/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/message/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/message/detail.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,6 +129,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/http-message" />
       <path value="$PROJECT_DIR$/vendor/mews/captcha" />
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/caouecs/laravel-lang" />
     </include_path>
   </component>
   <component name="ProjectId" id="1SY8mPzbojh4ZoCob9Muve9TIiV" />
@@ -134,19 +140,20 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/tuanjian" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/lang" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\worker\project\message\resources\views\message" />
-      <recent name="C:\worker\project\message\resources\views\login" />
-      <recent name="C:\worker\project\message\vendor" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\worker\project\message\public" />
       <recent name="C:\worker\project\message" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\worker\github\messageBoard\resources\lang" />
+      <recent name="C:\worker\project\message\resources\views\message" />
+      <recent name="C:\worker\project\message\resources\views\login" />
+      <recent name="C:\worker\project\message\vendor" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -182,8 +189,16 @@
       <workItem from="1571878744679" duration="14061000" />
       <workItem from="1571898112130" duration="457000" />
       <workItem from="1571900656116" duration="12636000" />
-      <workItem from="1571913315888" duration="744000" />
+      <workItem from="1571913315888" duration="13463000" />
     </task>
+    <task id="LOCAL-00001" summary="细节修改">
+      <created>1571914086101</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1571914086101</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,5 +219,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="细节修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="细节修改" />
   </component>
 </project>

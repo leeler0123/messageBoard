@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Model\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class Login extends Controller
 {
@@ -45,9 +47,10 @@ class Login extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function register(Request $request){
+    public function register(Request $request)
+    {
 
-        $validateData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'username' => 'required|max:30|min:6|unique:user',
             'email' => 'required|email|unique:user',
             'password' => 'required|min:6|max:16',
@@ -55,18 +58,28 @@ class Login extends Controller
             'captcha' => 'required|captcha'
         ]);
 
+        if ($validator->fails()) {
+            return responseErr($validator->errors()->first());
+        }
+
+        $params = $request->only(['username','email','password']);
+
         $data = [
-            'username'=> $validateData['username'],
-            'email' => $validateData['email'],
-            'password' => sha1(md5($validateData['password'])),
+            'username'=> $params['username'],
+            'email' => $params['email'],
+            'password' => sha1(md5($params['password'])),
             'ctime' => time(),
         ];
 
-        $user = new User($data);
-        $ret = $user->save();
-
-        return redirect('/login');
-
+        $insert_id = DB::table('user')->insertGetId($data);
+        if($insert_id){
+            // 写入session
+            $user = User::where(['id'=>$insert_id])->select(['id','username','email','is_super'])->first();
+            session(['userinfo'=>$user->toArray()]);
+            return responseSuc([]);
+        }else{
+            return responseErr('注册用户失败');
+        }
     }
 
     /**
