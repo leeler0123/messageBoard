@@ -19,7 +19,7 @@ class BlackList
         $flag = \App\Model\Blacklist::where('user_id',$user_id)->first();
         if($flag){
             if(request()->ajax()){
-                return responseErr('您已被拉黑');die;
+                return responseErr('您已被拉黑');
             }
             return redirect('no_rank');
         }

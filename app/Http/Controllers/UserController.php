@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // 用户列表
+    /**
+     * @describe    用户列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function list()
     {
         //分页操作
@@ -18,7 +21,10 @@ class UserController extends Controller
         return view('user/list',['users'=>$users]);
     }
 
-    // 黑名单列表
+    /**
+     * @describe    黑名单列表
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function blacklist()
     {
         //分页操作
@@ -30,7 +36,11 @@ class UserController extends Controller
         return view('user/blacklist',['blacklist'=>$blacklist]);
     }
 
-    // 拉黑
+    /**
+     * @describe    拉黑用户
+     * @param $user_id  用户ID
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function set_black($user_id)
     {
         $flag = Blacklist::where('user_id',$user_id)->first();
@@ -46,7 +56,11 @@ class UserController extends Controller
         }
     }
 
-    // 取消拉黑
+    /**
+     * @describe    取消拉黑
+     * @param $id   用户ID
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function del_black($id)
     {
         $bls = Blacklist::destroy($id);
