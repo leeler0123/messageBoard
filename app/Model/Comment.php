@@ -8,6 +8,7 @@ class Comment extends Model
 {
     // 主键id
     protected $primaryKey = 'id';
+    // 表名称
     protected $table = 'Comment';
     public $timestamps = false;
 

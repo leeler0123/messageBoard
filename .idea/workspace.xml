@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7af2321a-3dde-4dcd-90a5-3209d25f87a7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Model/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Comment.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -182,7 +181,7 @@
       <workItem from="1571913315888" duration="16639000" />
       <workItem from="1571984103975" duration="13459000" />
       <workItem from="1572259518929" duration="5125000" />
-      <workItem from="1572320423725" duration="63000" />
+      <workItem from="1572320423725" duration="145000" />
     </task>
     <task id="LOCAL-00001" summary="细节修改">
       <created>1571914086101</created>
@@ -212,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571987805432</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="模板和api输出优化">
+      <created>1572320502275</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1572320502275</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
