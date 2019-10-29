@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    // 主键id
     protected $primaryKey = 'id';
     protected $table = 'Comment';
     public $timestamps = false;

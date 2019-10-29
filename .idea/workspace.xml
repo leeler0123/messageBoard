@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7af2321a-3dde-4dcd-90a5-3209d25f87a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Services/AriticelService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/BlacklistService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/CommentService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Services/UserService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery2.1.4/dida_win_setup_release_3260.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MessageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/BlackList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/BlackList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/zh-CN/validation.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/zh-CN/validation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/message/detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/message/detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/message/manage_msg.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/message/manage_msg.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/blacklist.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/blacklist.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Comment.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +18,11 @@
     </execution>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -138,7 +130,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/tuanjian" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
@@ -189,6 +181,8 @@
       <workItem from="1571900656116" duration="12636000" />
       <workItem from="1571913315888" duration="16639000" />
       <workItem from="1571984103975" duration="13459000" />
+      <workItem from="1572259518929" duration="5125000" />
+      <workItem from="1572320423725" duration="63000" />
     </task>
     <task id="LOCAL-00001" summary="细节修改">
       <created>1571914086101</created>
